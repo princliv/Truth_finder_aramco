@@ -63,7 +63,7 @@ const IntroScreen = ({ lang, onStartWorksheet, onStartScenario }: IntroScreenPro
             </div>
             <h3 className="text-2xl font-bold text-white mb-2">{t(lang, 'scenarioMode')}</h3>
             <p className="text-muted-foreground mb-8 text-sm leading-relaxed">
-              Test your reflexes in real-world scenarios. Find the truth behind critical feedback.
+              {t(lang, 'scenarioModeDesc' as any)}
             </p>
             <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs">
               <span>{t(lang, 'start')}</span>
@@ -92,7 +92,7 @@ const IntroScreen = ({ lang, onStartWorksheet, onStartScenario }: IntroScreenPro
             </div>
             <h3 className="text-2xl font-bold text-white mb-2">{t(lang, 'worksheetMode')}</h3>
             <p className="text-muted-foreground mb-8 text-sm leading-relaxed">
-              A deep-dive reflection journey to understand your emotional patterns.
+              {t(lang, 'worksheetModeDesc' as any)}
             </p>
             <div className="flex items-center gap-2 text-accent font-bold uppercase tracking-widest text-xs">
               <span>{t(lang, 'start')}</span>

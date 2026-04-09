@@ -33,26 +33,24 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
   };
 
   const getStrength = () => {
-    if (mode === 'scenario' && (scenarioScore || 0) >= 3) {
-      return lang === 'en' ? 'Excellent at identifying the kernel' : 'ممتاز في تحديد الجوهر';
+    if (mode === 'scenario' && (scenarioScore || 0) >= 4) {
+      return t(lang, 'strengthExcellent' as any);
     }
     if (worksheetAnswers?.firstReaction?.includes('listenCarefully')) {
-      return lang === 'en' ? 'Active listening under pressure' : 'الاستماع الفعال تحت الضغط';
+      return t(lang, 'strengthListening' as any);
     }
-    return lang === 'en' ? 'Developing self-awareness' : 'تطوير الوعي الذاتي';
+    return t(lang, 'strengthSelfAwareness' as any);
   };
 
   const getImprovement = () => {
     if (mode === 'scenario' && (scenarioScore || 0) < 4) {
-      return lang === 'en' ? 'Refine your ability to stay objective' : 'صقل قدرتك على البقاء موضوعياً';
+      return t(lang, 'improvementObjective' as any);
     }
-    return lang === 'en' ? 'Separating emotions from facts' : 'فصل المشاعر عن الحقائق';
+    return t(lang, 'improvementSeparation' as any);
   };
 
   const getInsight = () => {
-    return lang === 'en'
-      ? 'Truth isn\'t what we feel; it\'s what we find when feelings settle.'
-      : 'الحقيقة ليست ما نشعر به؛ بل هي ما نجده عندما تهدأ المشاعر.';
+    return t(lang, 'finalInsightText' as any);
   };
 
   // Real calculation: 50 points per correct answer (out of 5 scenarios)
@@ -104,7 +102,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
         {/* Left Column: Insights */}
         <div className="lg:col-span-2 space-y-6">
           <h2 className="text-lg font-black text-white/40 uppercase tracking-[0.3em] ml-2 flex items-center gap-3">
-            <Brain className="w-5 h-5" /> Behavioral Insights
+            <Brain className="w-5 h-5" /> {t(lang, 'behavioralInsights' as any)}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <AnimatePresence>
@@ -137,7 +135,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
         {/* Right Column: Performance Report */}
         <div className="space-y-6">
           <h2 className="text-lg font-black text-white/40 uppercase tracking-[0.3em] ml-2 flex items-center gap-3">
-            <BarChart3 className="w-5 h-5 shrink-0" /> <span className="truncate">Performance Report</span>
+            <BarChart3 className="w-5 h-5 shrink-0" /> <span className="truncate">{t(lang, 'performanceReport' as any)}</span>
           </h2>
           <motion.div
             initial={{ x: 20, opacity: 0 }}
@@ -153,7 +151,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
               {/* Accuracy Chart */}
               <div>
                 <div className="flex justify-between items-end mb-4">
-                  <span className="text-sm font-black text-white/60 uppercase tracking-widest">Accuracy</span>
+                  <span className="text-sm font-black text-white/60 uppercase tracking-widest">{t(lang, 'accuracy' as any)}</span>
                   <span className="text-2xl font-black text-white italic">{accuracy}%</span>
                 </div>
                 <div className="h-4 w-full bg-white/5 rounded-full p-1 border border-white/10">
@@ -171,7 +169,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10">
                   <div className="flex items-center gap-3">
                     <Target className="w-5 h-5 text-accent" />
-                    <span className="text-xs font-bold text-white/60 uppercase">Successful Kernels</span>
+                    <span className="text-xs font-bold text-white/60 uppercase">{t(lang, 'successfulKernels' as any)}</span>
                   </div>
                   <span className="text-lg font-black text-white">{scenarioScore || 0}</span>
                 </div>
@@ -179,7 +177,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
                 <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 opacity-60">
                   <div className="flex items-center gap-3">
                     <Zap className="w-5 h-5 text-secondary" />
-                    <span className="text-xs font-bold text-white/60 uppercase">Points per Truth</span>
+                    <span className="text-xs font-bold text-white/60 uppercase">{t(lang, 'pointsPerTruth' as any)}</span>
                   </div>
                   <span className="text-lg font-black text-white">50 XP</span>
                 </div>
@@ -187,7 +185,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
 
               <div className="pt-6 border-t border-white/10">
                 <p className="text-xs font-medium text-white/40 leading-relaxed italic">
-                  "Your ability to separate reaction from reflection is growing. Focus on pausing for 2 extra seconds before your next challenge."
+                  "{t(lang, 'finalAdvice' as any)}"
                 </p>
               </div>
             </div>

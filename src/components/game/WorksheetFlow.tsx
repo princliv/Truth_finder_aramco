@@ -254,16 +254,7 @@ const WorksheetFlow = ({ lang, onComplete, onTriggerAI, onLevelChange }: Workshe
   };
 
   const getStepInsight = () => {
-    // Return different insights based on the step
-    const insights: Record<number, string> = {
-      1: "Spotting your initial reaction is the first step toward self-mastery. Most people react without even noticing it!",
-      2: "Emotions are just data. They aren't right or wrong, they just ARE. Acknowledging them takes their power away.",
-      3: "Your behaviors are habits. Habits can be rewritten. By choosing a different path today, you're building a new you.",
-      4: "Patterns define our lives until we bring them into the light. You've just shone a massive spotlight on yours.",
-      5: "Deep reflection is where the magic happens. You're digging for gold, and you're finding it.",
-      6: "Awareness is 90% of the battle. You've completed the heavy lifting. Now, take this insight into the world.",
-    };
-    return insights[step] || "Great progress! You're becoming a master of your own mind.";
+    return t(lang, `insightStep${step}` as any) || "Great progress! You're becoming a master of your own mind.";
   };
 
   const canProceed = () => {
