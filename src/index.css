@@ -159,8 +159,13 @@
       radial-gradient(at 0% 100%, hsla(174, 100%, 39%, 0.1) 0px, transparent 50%);
   }
 
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .animate-slow-zoom {
+    animation: slow-zoom 60s ease-in-out infinite alternate;
+  }
+
+  @keyframes slow-zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
   }
 
   .animate-pulse-soft {

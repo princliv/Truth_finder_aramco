@@ -82,9 +82,17 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[#020617] text-foreground relative overflow-hidden dark">
       {/* Background Layers */}
-      <div className="fixed inset-0 z-0 bg-tech-pattern opacity-40" />
-      <div className="fixed inset-0 z-0 bg-grid-pattern opacity-20" />
-      <div className="fixed inset-0 z-0 bg-mesh-gradient" />
+      <div className="fixed inset-0 z-0">
+        <img 
+          src="/truth_bg.png" 
+          alt="" 
+          className="w-full h-full object-cover opacity-20 contrast-125 brightness-50 animate-slow-zoom"
+        />
+        <div className="absolute inset-0 bg-tech-pattern opacity-40" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/50 via-transparent to-[#020617]/80" />
+      </div>
+      <div className="fixed inset-0 z-0 bg-mesh-gradient opacity-30" />
 
       {/* Level Timeline (Sidebar) */}
       {gameState !== 'intro' && gameState !== 'complete' && (
