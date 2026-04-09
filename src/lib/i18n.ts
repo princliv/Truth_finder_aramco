@@ -233,6 +233,18 @@ export const translations = {
     howItWorksStep2: "Analyze: Separate raw emotions from the message.",
     howItWorksStep3: "Identify: Find the 'Kernel of Truth' to grow.",
     howItWorksStep4: "Respond: Choose a professional path built on trust.",
+
+    introScenario: "Welcome to Truth Finder. Face high-stakes feedback scenarios and prove you can maintain objectivity under pressure. Your mission: Cut through the noise and find the gold.",
+    rulesScenario: "1. Analyze the feedback provided. 2. Identify the 'Kernel of Truth'. 3. Avoid defensive or reactive traps. High accuracy awards Maximum XP and professional rank.",
+    instructionScenario: "Read each scenario carefully. Select the most reflective response to achieve the best outcome. Watch out for 'Dangerous' traps that can damage trust!",
+
+    introWorksheet: "The Reflection Journey is a private space for cognitive growth. Dive deep into your emotional patterns and rebuild your feedback mindset through structured analysis.",
+    rulesWorksheet: "1. Practice radical self-honesty. 2. Navigate the 6-step deep reflection methodology. 3. Complete each level's objective to unlock unique behavioral insights.",
+    instructionWorksheet: "Think deeply about your recent feedback experiences. Fill out each step of the worksheet to see your personal growth pattern emerge at the end.",
+    
+    tabIntro: "Vision",
+    tabRules: "Mechanics",
+    tabInstructions: "Mastery",
   },
   ar: {
     title: "تحدي اكتشاف الحقيقة",
@@ -462,6 +474,18 @@ export const translations = {
     howItWorksStep2: "حلل: افصل المشاعر الخام عن الرسالة.",
     howItWorksStep3: "حدد: ابحث عن 'جوهر الحقيقة' لتنمو.",
     howItWorksStep4: "استجب: اختر مساراً مهنياً مبنياً على الثقة.",
+
+    introScenario: "مرحباً بك في تحدي اكتشاف الحقيقة. واجه سيناريوهات ملاحظات عالية المخاطر وأثبت قدرتك على الحفاظ على الموضوعية تحت الضغط. مهمتك: اختراق الضجيج والعثور على الجوهر.",
+    rulesScenario: "1. حلل الملاحظات المقدمة. 2. حدد 'جوهر الحقيقة'. 3. تجنب فخاخ الدفاع أو رد الفعل. الدقة العالية تمنحك أقصى نقاط خبرة ورتبة مهنية.",
+    instructionScenario: "اقرأ كل سيناريو بعناية. اختر الاستجابة الأكثر تأملاً لتحقيق أفضل نتيجة. احذر من فخاخ 'الخطر' التي قد تضر بالثقة!",
+
+    introWorksheet: "رحلة التأمل هي مساحة خاصة للنمو المعرفي. تعمق في أنماطك العاطفية وأعد بناء عقلية الملاحظات لديك من خلال تحليل هيكلي.",
+    rulesWorksheet: "1. مارس الصدق المطلق مع الذات. 2. تنقل في منهجية التأمل العميق المكونة من 6 خطوات. 3. أكمل هدف كل مستوى لفتح رؤى سلوكية فريدة.",
+    instructionWorksheet: "فكر بعمق في تجارب الملاحظات الأخيرة لديك. املأ كل خطوة من ورقة العمل لترى نمط نموك الشخصي يظهر في النهاية.",
+
+    tabIntro: "الرؤية",
+    tabRules: "الميكانيكا",
+    tabInstructions: "الإتقان",
   },
 } as const;
 

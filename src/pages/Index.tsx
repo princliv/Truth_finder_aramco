@@ -184,6 +184,7 @@ const Index = () => {
         isOpen={showInstruction}
         onClose={() => setShowInstruction(false)}
         lang={lang}
+        mode={mode}
         level={currentLevel}
         levelName={getLevelNames()[currentLevel - 1]}
       />

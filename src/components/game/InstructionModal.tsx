@@ -1,33 +1,40 @@
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Hand, Pointer, Check, Play, UserCircle } from 'lucide-react';
+import { Hand, Pointer, Check, Play, UserCircle, Target, Zap, ShieldCheck, ChevronRight, Sparkles } from 'lucide-react';
 import { t, Language } from '@/lib/i18n';
 
 interface InstructionModalProps {
   isOpen: boolean;
   onClose: () => void;
   lang: Language;
+  mode: 'worksheet' | 'scenario';
   level: number;
   levelName: string;
 }
 
-const InstructionModal = ({ isOpen, onClose, lang, level, levelName }: InstructionModalProps) => {
+type Tab = 'intro' | 'rules' | 'instructions';
+
+const InstructionModal = ({ isOpen, onClose, lang, mode, level, levelName }: InstructionModalProps) => {
+  const [activeTab, setActiveTab] = useState<Tab>('intro');
+  const isRtl = lang === 'ar';
+
   const getGesture = () => {
     switch (level) {
       case 1:
         return {
-          icon: <Hand className="w-16 h-16 text-primary" />,
+          icon: <Hand className="w-12 h-12 text-blue-400" />,
           label: t(lang, 'gesturePause'),
           desc: t(lang, 'level1Instruction')
         };
       case 2:
         return {
-          icon: <Pointer className="w-16 h-16 text-accent -rotate-45" />,
+          icon: <Pointer className="w-12 h-12 text-emerald-400 -rotate-45" />,
           label: t(lang, 'gestureFocus'),
           desc: t(lang, 'level2Instruction')
         };
       case 3:
         return {
-          icon: <Hand className="w-16 h-16 text-secondary rotate-90" />, // Simulating "Ok" or "Grasp"
+          icon: <Hand className="w-12 h-12 text-blue-400 rotate-90" />,
           label: t(lang, 'gestureOk'),
           desc: t(lang, 'level3Instruction')
         };
@@ -39,6 +46,34 @@ const InstructionModal = ({ isOpen, onClose, lang, level, levelName }: Instructi
   const gesture = getGesture();
   if (!gesture) return null;
 
+  const tabs: Tab[] = ['intro', 'rules', 'instructions'];
+
+  const getContent = (tab: Tab) => {
+    const modeKey = mode === 'scenario' ? 'Scenario' : 'Worksheet';
+    switch (tab) {
+      case 'intro':
+        return {
+          icon: <Target className="w-16 h-16 text-blue-400" />,
+          title: t(lang, 'tabIntro' as any),
+          text: t(lang, `intro${modeKey}` as any)
+        };
+      case 'rules':
+        return {
+          icon: <Zap className="w-16 h-16 text-emerald-400" />,
+          title: t(lang, 'tabRules' as any),
+          text: t(lang, `rules${modeKey}` as any)
+        };
+      case 'instructions':
+        return {
+          icon: <ShieldCheck className="w-16 h-16 text-blue-400" />,
+          title: t(lang, 'tabInstructions' as any),
+          text: t(lang, `instruction${modeKey}` as any)
+        };
+    }
+  };
+
+  const currentContent = getContent(activeTab);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -47,65 +82,100 @@ const InstructionModal = ({ isOpen, onClose, lang, level, levelName }: Instructi
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/80 backdrop-blur-md"
-            onClick={onClose}
+            className="absolute inset-0 bg-[#020617]/95 backdrop-blur-xl"
           />
           
           <motion.div
-            initial={{ scale: 0.9, y: 20, opacity: 0 }}
+            initial={{ scale: 0.9, y: 40, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
-            exit={{ scale: 0.9, y: 20, opacity: 0 }}
-            className="relative w-full max-w-lg glass border-white/10 rounded-[3rem] p-10 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+            exit={{ scale: 0.9, y: 40, opacity: 0 }}
+            className="relative w-full max-w-2xl bg-[#0F172A]/40 glass border-white/10 rounded-[3.5rem] p-12 overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)]"
           >
-            {/* Background Glow */}
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full" />
-            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-accent/10 blur-[100px] rounded-full" />
+            {/* Geometric Background Decoration */}
+            <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+              <Sparkles className="w-64 h-64 text-blue-500" />
+            </div>
 
-            <div className="relative z-10 text-center">
-              <div className="mb-8 flex justify-center">
-                <motion.div
-                  animate={{ 
-                    y: [0, -10, 0],
-                    rotate: level === 2 ? [-45, -35, -45] : [0, 5, 0]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-32 h-32 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center shadow-2xl"
-                >
-                  {gesture.icon}
-                </motion.div>
-              </div>
-
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-4">
-                Level {level}
-              </span>
-              
-              <h2 className="text-3xl font-black text-white mb-4 italic uppercase tracking-tighter">
-                {levelName}
-              </h2>
-              
-              <p className="text-white/60 font-medium mb-10 leading-relaxed text-lg italic">
-                "{gesture.desc}"
-              </p>
-
-              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 mb-10">
-                <div className="flex items-center gap-4 text-start">
-                  <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center shrink-0">
-                    <UserCircle className="w-6 h-6 text-secondary" />
+            <div className="relative z-10">
+              <div className="flex justify-between items-center mb-12">
+                <div className="flex items-center gap-4">
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${mode === 'scenario' ? 'bg-blue-600/20 text-blue-400' : 'bg-emerald-600/20 text-emerald-400'}`}>
+                    <Sparkles className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-black text-white/40 uppercase tracking-widest block">Instruction</span>
-                    <span className="text-sm font-bold text-white/90">{gesture.label}</span>
+                    <h4 className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em] mb-1">Onboarding</h4>
+                    <h3 className="text-xl font-bold text-white italic tracking-tight">{levelName}</h3>
                   </div>
+                </div>
+                
+                <div className="flex gap-2">
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      className={`h-1.5 rounded-full transition-all duration-500 ${
+                        activeTab === tab 
+                          ? `w-8 ${mode === 'scenario' ? 'bg-blue-500' : 'bg-emerald-500'}` 
+                          : 'w-4 bg-white/10 hover:bg-white/20'
+                      }`}
+                    />
+                  ))}
                 </div>
               </div>
 
-              <button
-                onClick={onClose}
-                className="w-full py-5 rounded-2xl gradient-primary text-primary-foreground font-black uppercase tracking-[0.2em] shadow-2xl hover:scale-[1.02] transition-all flex items-center justify-center gap-3"
-              >
-                {t(lang, 'startLevel')}
-                <Play className="w-5 h-5 fill-current" />
-              </button>
+              <div className="min-h-[300px] flex flex-col items-center justify-center text-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ x: 20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -20, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "circOut" }}
+                    className="flex flex-col items-center"
+                  >
+                    <div className="w-32 h-32 rounded-[2.5rem] bg-white/5 border border-white/10 flex items-center justify-center mb-8 shadow-2xl relative group">
+                      <div className={`absolute inset-0 blur-2xl opacity-20 group-hover:opacity-40 transition-opacity ${mode === 'scenario' ? 'bg-blue-500' : 'bg-emerald-500'}`} />
+                      <motion.div
+                        animate={{ y: [0, -5, 0] }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                        className="relative z-10"
+                      >
+                        {currentContent.icon}
+                      </motion.div>
+                    </div>
+
+                    <h2 className={`text-4xl font-black italic uppercase tracking-tighter mb-6 ${mode === 'scenario' ? 'text-blue-400' : 'text-emerald-400'}`}>
+                      {currentContent.title}
+                    </h2>
+                    
+                    <p className="text-white/70 text-lg font-medium leading-[1.6] max-w-md mx-auto italic">
+                      "{currentContent.text}"
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <div className="mt-16 flex gap-4">
+                {activeTab !== 'instructions' ? (
+                  <button
+                    onClick={() => setActiveTab(tabs[tabs.indexOf(activeTab) + 1])}
+                    className="flex-1 py-5 rounded-3xl bg-white/5 border border-white/10 text-white font-black uppercase tracking-[0.3em] text-sm hover:bg-white/10 transition-all flex items-center justify-center gap-3"
+                  >
+                    Next Concept
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={onClose}
+                    className={`flex-1 py-6 rounded-3xl font-black uppercase tracking-[0.4em] text-sm shadow-2xl hover:scale-[1.02] transition-all flex items-center justify-center gap-4 ${
+                      mode === 'scenario' ? 'bg-blue-600 text-white shadow-blue-900/40' : 'bg-emerald-600 text-white shadow-emerald-900/40'
+                    }`}
+                  >
+                    Begin Operations
+                    <Play className="w-6 h-6 fill-current" />
+                  </button>
+                )}
+              </div>
             </div>
           </motion.div>
         </div>

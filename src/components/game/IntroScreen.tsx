@@ -16,21 +16,6 @@ const IntroScreen = ({ lang, onStartWorksheet, onStartScenario }: IntroScreenPro
       {/* Decorative Geometric Shapes */}
       <div className="absolute top-0 -left-20 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 -right-20 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl" />
-      
-      {/* Hero Badge */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-        className="mb-8"
-      >
-        <div className="relative group">
-          <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full group-hover:bg-blue-500/30 transition-all duration-700" />
-          <div className="relative w-28 h-28 rounded-[2rem] bg-blue-600 flex items-center justify-center shadow-2xl glass border-white/20 animate-float">
-            <Target className="w-14 h-14 text-white" />
-          </div>
-        </div>
-      </motion.div>
 
       <motion.div
         initial={{ y: 20, opacity: 0 }}
