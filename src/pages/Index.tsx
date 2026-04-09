@@ -82,6 +82,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[#020617] text-foreground relative overflow-hidden dark">
       {/* Background Layers */}
+      <div className="fixed inset-0 z-0 bg-tech-pattern opacity-40" />
       <div className="fixed inset-0 z-0 bg-grid-pattern opacity-20" />
       <div className="fixed inset-0 z-0 bg-mesh-gradient" />
 

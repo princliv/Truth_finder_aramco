@@ -227,6 +227,12 @@ export const translations = {
     successfulKernels: "Successful Kernels",
     pointsPerTruth: "Points per Truth",
     finalAdvice: "Your ability to separate reaction from reflection is growing. Focus on pausing for 2 extra seconds before your next challenge.",
+    
+    howItWorks: "Mastering the Reflection Cycle",
+    howItWorksStep1: "Pause: Create space between receipt and reaction.",
+    howItWorksStep2: "Analyze: Separate raw emotions from the message.",
+    howItWorksStep3: "Identify: Find the 'Kernel of Truth' to grow.",
+    howItWorksStep4: "Respond: Choose a professional path built on trust.",
   },
   ar: {
     title: "تحدي اكتشاف الحقيقة",
@@ -450,6 +456,12 @@ export const translations = {
     successfulKernels: "جواهر الحقيقة المكتشفة",
     pointsPerTruth: "نقاط لكل حقيقة",
     finalAdvice: "قدرتك على فصل رد الفعل عن التأمل في نمو مستمر. ركز على التوقف لمدة ثانيتين إضافيتين قبل التحدي القادم.",
+    
+    howItWorks: "إتقان دورة التأمل",
+    howItWorksStep1: "توقف: اخلق مسافة بين تلقي الملاحظات ورد فعلك.",
+    howItWorksStep2: "حلل: افصل المشاعر الخام عن الرسالة.",
+    howItWorksStep3: "حدد: ابحث عن 'جوهر الحقيقة' لتنمو.",
+    howItWorksStep4: "استجب: اختر مساراً مهنياً مبنياً على الثقة.",
   },
 } as const;
 

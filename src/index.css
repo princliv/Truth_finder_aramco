@@ -128,14 +128,33 @@
   }
 
   .bg-grid-pattern {
-    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
-    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .bg-tech-pattern {
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(0, 163, 224, 0.05) 0%, transparent 80%),
+      linear-gradient(rgba(255, 255, 255, 0.01) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.01) 2px, transparent 2px);
+    background-size: 100% 100%, 200px 200px, 200px 200px;
+    position: relative;
+  }
+
+  .bg-tech-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300A3E0' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 30V20h2v10h10v2H6v-2zM30 6v10h-2V6H18V4h12v2zM54 30v10h-2V30H42v-2h12v2zM30 54v-10h2v10h10v2H30v-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
   }
 
   .bg-mesh-gradient {
     background: 
-      radial-gradient(at 0% 0%, hsla(197, 100%, 44%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, hsla(174, 100%, 39%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, hsla(197, 100%, 44%, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(174, 100%, 39%, 0.15) 0px, transparent 50%),
       radial-gradient(at 100% 100%, hsla(197, 100%, 44%, 0.1) 0px, transparent 50%),
       radial-gradient(at 0% 100%, hsla(174, 100%, 39%, 0.1) 0px, transparent 50%);
   }
