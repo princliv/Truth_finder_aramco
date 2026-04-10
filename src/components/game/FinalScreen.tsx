@@ -74,7 +74,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="text-4xl md:text-5xl font-black text-white mb-4 italic uppercase tracking-tighter"
+          className="text-4xl md:text-5xl font-black text-foreground mb-4 italic uppercase tracking-tighter"
         >
           {t(lang, 'insightUnlocked')}
         </motion.h1>
@@ -86,7 +86,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
           className="inline-flex items-center gap-4 mt-4 px-8 py-4 rounded-[2rem] glass border-primary/20 shadow-2xl"
         >
           <div className="flex flex-col items-center">
-            <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] mb-1">Total Rewards</span>
+            <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em] mb-1">Total Rewards</span>
             <div className="flex items-center gap-2">
               <Zap className="w-6 h-6 text-secondary animate-pulse" />
               <span className="text-3xl font-black bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
@@ -101,7 +101,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column: Insights */}
         <div className="lg:col-span-2 space-y-6">
-          <h2 className="text-lg font-black text-white/40 uppercase tracking-[0.3em] ml-2 flex items-center gap-3">
+          <h2 className="text-lg font-black text-muted-foreground uppercase tracking-[0.3em] ml-2 flex items-center gap-3">
             <Brain className="w-5 h-5" /> {t(lang, 'behavioralInsights' as any)}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -117,15 +117,15 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.6 + i * 0.1 }}
-                  className="p-8 rounded-[2.5rem] glass border-white/5 shadow-2xl hover:border-primary/30 transition-all group"
+                  className="p-8 rounded-[2.5rem] glass border-border/10 shadow-2xl hover:border-primary/30 transition-all group"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-2xl bg-muted flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     {item.icon}
                   </div>
-                  <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] mb-2 block">
+                  <span className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-2 block">
                     {item.label}
                   </span>
-                  <p className="text-lg font-bold text-white/90 leading-tight">{item.value}</p>
+                  <p className="text-lg font-bold text-foreground leading-tight">{item.value}</p>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -134,7 +134,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
 
         {/* Right Column: Performance Report */}
         <div className="space-y-6">
-          <h2 className="text-lg font-black text-white/40 uppercase tracking-[0.3em] ml-2 flex items-center gap-3">
+          <h2 className="text-lg font-black text-muted-foreground uppercase tracking-[0.3em] ml-2 flex items-center gap-3">
             <BarChart3 className="w-5 h-5 shrink-0" /> <span className="truncate">{t(lang, 'performanceReport' as any)}</span>
           </h2>
           <motion.div
@@ -151,10 +151,10 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
               {/* Accuracy Chart */}
               <div>
                 <div className="flex justify-between items-end mb-4">
-                  <span className="text-sm font-black text-white/60 uppercase tracking-widest">{t(lang, 'accuracy' as any)}</span>
-                  <span className="text-2xl font-black text-white italic">{accuracy}%</span>
+                  <span className="text-sm font-black text-muted-foreground uppercase tracking-widest">{t(lang, 'accuracy' as any)}</span>
+                  <span className="text-2xl font-black text-foreground italic">{accuracy}%</span>
                 </div>
-                <div className="h-4 w-full bg-white/5 rounded-full p-1 border border-white/10">
+                <div className="h-4 w-full bg-muted rounded-full p-1 border border-border">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${accuracy}%` }}
@@ -166,25 +166,25 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
 
               {/* Stats Breakdown */}
               <div className="space-y-6">
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10">
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-muted border border-border">
                   <div className="flex items-center gap-3">
                     <Target className="w-5 h-5 text-accent" />
-                    <span className="text-xs font-bold text-white/60 uppercase">{t(lang, 'successfulKernels' as any)}</span>
+                    <span className="text-xs font-bold text-muted-foreground uppercase">{t(lang, 'successfulKernels' as any)}</span>
                   </div>
-                  <span className="text-lg font-black text-white">{scenarioScore || 0}</span>
+                  <span className="text-lg font-black text-foreground">{scenarioScore || 0}</span>
                 </div>
 
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 opacity-60">
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-muted border border-border opacity-60">
                   <div className="flex items-center gap-3">
                     <Zap className="w-5 h-5 text-secondary" />
-                    <span className="text-xs font-bold text-white/60 uppercase">{t(lang, 'pointsPerTruth' as any)}</span>
+                    <span className="text-xs font-bold text-muted-foreground uppercase">{t(lang, 'pointsPerTruth' as any)}</span>
                   </div>
-                  <span className="text-lg font-black text-white">50 XP</span>
+                  <span className="text-lg font-black text-foreground">50 XP</span>
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-white/10">
-                <p className="text-xs font-medium text-white/40 leading-relaxed italic">
+              <div className="pt-6 border-t border-border">
+                <p className="text-xs font-medium text-muted-foreground leading-relaxed italic">
                   "{t(lang, 'finalAdvice' as any)}"
                 </p>
               </div>
@@ -202,7 +202,7 @@ const FinalScreen = ({ lang, mode, worksheetAnswers, scenarioScore, onTryAgain, 
       >
         <button
           onClick={onTryAgain}
-          className="flex items-center justify-center gap-3 px-10 py-5 rounded-2xl glass border-white/10 text-white font-black uppercase tracking-widest hover:bg-white/10 transition-all"
+          className="flex items-center justify-center gap-3 px-10 py-5 rounded-2xl glass border-border text-foreground font-black uppercase tracking-widest hover:bg-muted transition-all"
         >
           <RefreshCw className="w-5 h-5" />
           {t(lang, 'tryAgain')}

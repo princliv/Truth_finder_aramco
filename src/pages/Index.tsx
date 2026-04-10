@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Language, t } from '@/lib/i18n';
 import LanguageToggle from '@/components/game/LanguageToggle';
+import ThemeToggle from '@/components/game/ThemeToggle';
 import IntroScreen from '@/components/game/IntroScreen';
 import WorksheetFlow from '@/components/game/WorksheetFlow';
 import ScenarioMode from '@/components/game/ScenarioMode';
@@ -14,6 +15,7 @@ type GameState = 'intro' | 'worksheet' | 'scenario' | 'complete';
 
 const Index = () => {
   const [lang, setLang] = useState<Language>('en');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [gameState, setGameState] = useState<GameState>('intro');
   const [mode, setMode] = useState<'worksheet' | 'scenario'>('worksheet');
   const [currentLevel, setCurrentLevel] = useState(1);
@@ -30,7 +32,15 @@ const Index = () => {
     }
   }, [currentLevel, gameState]);
 
+  // Apply theme to document
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+  }, [theme]);
+
   const toggleLang = () => setLang(prev => prev === 'en' ? 'ar' : 'en');
+  const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
 
   const handleLogoClick = () => {
     if (gameState === 'intro' || gameState === 'complete') {
@@ -80,7 +90,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#020617] text-foreground relative overflow-hidden dark">
+    <div className={`min-h-screen bg-background text-foreground relative overflow-hidden transition-colors duration-500 ${theme === 'dark' ? 'dark' : ''}`}>
       {/* Background Layers */}
       <div className="fixed inset-0 z-0">
         <img 
@@ -90,7 +100,7 @@ const Index = () => {
         />
         <div className="absolute inset-0 bg-tech-pattern opacity-40" />
         <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/50 via-transparent to-[#020617]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background/90" />
       </div>
       <div className="fixed inset-0 z-0 bg-mesh-gradient opacity-30" />
 
@@ -116,16 +126,17 @@ const Index = () => {
 
         {/* Center: Session detail */}
         <div className="flex-1 text-center hidden md:block">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs font-bold text-white/50 uppercase tracking-widest">
+            <span className="text-xs font-bold opacity-80 uppercase tracking-widest">
               Session 4B: R2 – {mode === 'worksheet' ? 'Reflecting' : 'Assessing'}
             </span>
           </div>
         </div>
 
-        {/* Right: Language toggle */}
-        <div className="flex-shrink-0">
+        {/* Right: Theme + Language toggle */}
+        <div className="flex items-center gap-4">
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
           <LanguageToggle lang={lang} onToggle={toggleLang} />
         </div>
       </div>

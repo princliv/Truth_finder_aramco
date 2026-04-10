@@ -49,7 +49,11 @@
     --teal-end: 174 100% 39%;
     --gradient-primary: linear-gradient(135deg, #00A3E0, #00C2B8);
     --shadow-glow: 0 0 20px rgba(0, 163, 224, 0.15);
-    --shadow-card: 0 4px 24px rgba(0, 58, 143, 0.08);
+    --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.05);
+    
+    --pattern-color: 214 100% 20%;
+    --glass-background: 0 0% 100% / 0.7;
+    --glass-border: 214 100% 20% / 0.1;
   }
 
   .dark {
@@ -80,6 +84,11 @@
     --border: 216 40% 15%;
     --input: 216 40% 15%;
     --ring: 197 100% 50%;
+    
+    --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.3);
+    --pattern-color: 0 0% 100%;
+    --glass-background: 216 50% 8% / 0.5;
+    --glass-border: 0 0% 100% / 0.1;
   }
 }
 
@@ -89,7 +98,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-500;
     font-family: 'Inter', 'Noto Sans Arabic', sans-serif;
     overflow-x: hidden;
   }
@@ -105,7 +114,7 @@
   }
 
   .gradient-game {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    background: linear-gradient(135deg, hsla(var(--background) / 1) 0%, hsla(var(--card) / 1) 100%);
   }
 
   .gradient-text {
@@ -124,21 +133,21 @@
   }
 
   .card-shadow {
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-card);
   }
 
   .bg-grid-pattern {
     background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      linear-gradient(hsla(var(--pattern-color) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsla(var(--pattern-color) / 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
   .bg-tech-pattern {
     background-image: 
-      radial-gradient(circle at 50% 50%, rgba(0, 163, 224, 0.05) 0%, transparent 80%),
-      linear-gradient(rgba(255, 255, 255, 0.01) 2px, transparent 2px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.01) 2px, transparent 2px);
+      radial-gradient(circle at 50% 50%, hsla(var(--primary) / 0.05) 0%, transparent 80%),
+      linear-gradient(hsla(var(--pattern-color) / 0.02) 2px, transparent 2px),
+      linear-gradient(90deg, hsla(var(--pattern-color) / 0.02) 2px, transparent 2px);
     background-size: 100% 100%, 200px 200px, 200px 200px;
     position: relative;
   }
@@ -153,10 +162,10 @@
 
   .bg-mesh-gradient {
     background: 
-      radial-gradient(at 0% 0%, hsla(197, 100%, 44%, 0.15) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, hsla(174, 100%, 39%, 0.15) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, hsla(197, 100%, 44%, 0.1) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, hsla(174, 100%, 39%, 0.1) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, hsla(197, 100%, 44%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(174, 100%, 39%, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(197, 100%, 44%, 0.05) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(174, 100%, 39%, 0.05) 0px, transparent 50%);
   }
 
   .animate-slow-zoom {
@@ -185,7 +194,9 @@
   }
   
   .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+    @apply backdrop-blur-xl border shadow-2xl;
+    background-color: hsla(var(--glass-background));
+    border-color: hsla(var(--glass-border));
   }
   .animate-shimmer {
     animation: shimmer 2s infinite linear;

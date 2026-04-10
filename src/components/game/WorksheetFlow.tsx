@@ -94,7 +94,7 @@ const WorksheetFlow = ({ lang, onComplete, onTriggerAI, onLevelChange }: Workshe
         className={`px-6 py-4 rounded-2xl text-sm font-bold transition-all border ${
           isSelected
             ? 'gradient-primary text-primary-foreground border-transparent shadow-xl ring-2 ring-primary/50'
-            : 'bg-white/5 text-white/80 border-white/10 hover:border-primary/50 hover:bg-white/10'
+            : 'bg-muted text-foreground/80 border-border hover:border-primary/50 hover:bg-muted/80'
         }`}
       >
         {label}
@@ -118,7 +118,7 @@ const WorksheetFlow = ({ lang, onComplete, onTriggerAI, onLevelChange }: Workshe
         className={`flex flex-col items-center gap-3 p-6 rounded-[2rem] transition-all border ${
           isSelected
             ? 'gradient-primary text-primary-foreground border-transparent shadow-2xl ring-4 ring-primary/20 scale-105'
-            : 'glass text-white/70 border-white/5 hover:border-secondary/50'
+            : 'glass text-foreground/70 border-border hover:border-secondary/50'
         }`}
       >
         <span className="text-4xl filter drop-shadow-lg">{emoji}</span>
@@ -198,7 +198,7 @@ const WorksheetFlow = ({ lang, onComplete, onTriggerAI, onLevelChange }: Workshe
                     className={`flex items-center gap-4 p-6 rounded-2xl transition-all border text-start ${
                       answers.behavior === val
                         ? 'gradient-primary text-primary-foreground border-transparent shadow-xl ring-2 ring-primary/30'
-                        : 'glass text-white/70 border-white/5 hover:border-secondary/50'
+                        : 'glass text-foreground/70 border-border hover:border-secondary/50'
                     }`}
                   >
                     <span className="text-3xl">{icon}</span>
@@ -218,7 +218,7 @@ const WorksheetFlow = ({ lang, onComplete, onTriggerAI, onLevelChange }: Workshe
                     className={`p-6 rounded-2xl text-start transition-all border ${
                       answers.pattern === val
                         ? 'gradient-primary text-primary-foreground border-transparent shadow-xl ring-2 ring-primary/30'
-                        : 'glass text-white/70 border-white/5 hover:border-secondary/50'
+                        : 'glass text-foreground/70 border-border hover:border-secondary/50'
                     }`}
                   >
                     <span className="text-base font-bold italic tracking-tight">{t(lang, val as any)}</span>
@@ -234,11 +234,11 @@ const WorksheetFlow = ({ lang, onComplete, onTriggerAI, onLevelChange }: Workshe
                   const labelKey = step === 5 ? (i === 1 ? 'whatKernel' : 'whatWouldChange') : (i === 1 ? 'iUsuallyReactBy' : 'oneThingICanImprove');
                   return (
                     <div key={i}>
-                      <label className="block text-sm font-black text-white/40 uppercase tracking-[0.2em] mb-3">{t(lang, labelKey as any)}</label>
+                      <label className="block text-sm font-black text-muted-foreground uppercase tracking-[0.2em] mb-3">{t(lang, labelKey as any)}</label>
                       <textarea
                         value={answers[key]}
                         onChange={(e) => handleTextChange(key, e.target.value)}
-                        className="w-full p-6 rounded-3xl glass border-white/10 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none h-32 text-lg transition-all placeholder:text-white/20"
+                        className="w-full p-6 rounded-3xl glass border-border text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none h-32 text-lg transition-all placeholder:text-muted-foreground/30"
                         placeholder="Type your reflection here..."
                         dir={isRtl ? 'rtl' : 'ltr'}
                       />
@@ -272,8 +272,8 @@ const WorksheetFlow = ({ lang, onComplete, onTriggerAI, onLevelChange }: Workshe
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in relative z-10">
       <div className="flex justify-between items-center mb-8">
-        <h4 className="text-xs font-black text-white/40 uppercase tracking-[0.3em]">{t(lang, 'worksheetMode')}</h4>
-        <div className="flex items-center gap-3 px-4 py-2 rounded-2xl glass border-white/10 shadow-xl">
+        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-[0.3em]">{t(lang, 'worksheetMode')}</h4>
+        <div className="flex items-center gap-3 px-4 py-2 rounded-2xl glass border-border shadow-xl">
           <Zap className="w-5 h-5 text-secondary animate-pulse" />
           <span className="text-sm font-black bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">{xp} XP</span>
         </div>
@@ -283,7 +283,7 @@ const WorksheetFlow = ({ lang, onComplete, onTriggerAI, onLevelChange }: Workshe
 
       <div className="mt-12 group relative">
         <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-[2.5rem] blur opacity-50" />
-        <div className="relative p-10 rounded-[2.5rem] glass border-white/10 shadow-2xl overflow-hidden min-h-[400px]">
+        <div className="relative p-10 rounded-[2.5rem] glass border-border shadow-2xl overflow-hidden min-h-[400px]">
           {renderStep()}
         </div>
       </div>
@@ -295,8 +295,8 @@ const WorksheetFlow = ({ lang, onComplete, onTriggerAI, onLevelChange }: Workshe
           disabled={step === 1}
           className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black uppercase tracking-widest transition-all ${
             step === 1
-              ? 'opacity-20 cursor-not-allowed text-white/20'
-              : 'text-white/60 hover:bg-white/5'
+              ? 'opacity-20 cursor-not-allowed text-muted-foreground/20'
+              : 'text-muted-foreground hover:bg-muted'
           }`}
         >
           <BackIcon className="w-5 h-5" />
@@ -311,7 +311,7 @@ const WorksheetFlow = ({ lang, onComplete, onTriggerAI, onLevelChange }: Workshe
           className={`flex items-center gap-3 px-10 py-4 rounded-2xl text-sm font-black uppercase tracking-[0.2em] shadow-2xl transition-all ${
             canProceed() 
               ? 'gradient-primary text-primary-foreground hover:shadow-primary/40' 
-              : 'bg-white/5 text-white/20 cursor-not-allowed grayscale'
+              : 'bg-muted text-muted-foreground/20 cursor-not-allowed grayscale'
           }`}
         >
           {step === TOTAL_STEPS ? t(lang, 'submit') : t(lang, 'next')}

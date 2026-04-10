@@ -17,18 +17,18 @@ const ProgressBar = ({ current, total, label, lang }: ProgressBarProps) => {
       <div className="flex justify-between items-end">
         <div>
           {label && (
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30 block mb-1">
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground/50 block mb-1">
               Mode: {label}
             </span>
           )}
-          <span className="text-2xl font-black text-white italic tracking-tighter">
-            {t(lang, 'stage')} {current} <span className="text-white/20">/</span> {total}
+          <span className="text-2xl font-black text-foreground italic tracking-tighter">
+            {t(lang, 'stage')} {current} <span className="text-muted-foreground/30">/</span> {total}
           </span>
         </div>
         <span className="text-sm font-black text-primary/80 tracking-widest">{Math.round(progress)}%</span>
       </div>
       
-      <div className="h-4 w-full bg-white/5 rounded-full overflow-hidden border border-white/5 p-1 glass">
+      <div className="h-4 w-full bg-muted rounded-full overflow-hidden border border-border p-1 glass">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}

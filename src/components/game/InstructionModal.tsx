@@ -82,29 +82,29 @@ const InstructionModal = ({ isOpen, onClose, lang, mode, level, levelName }: Ins
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-[#020617]/95 backdrop-blur-xl"
+            className="absolute inset-0 bg-background/95 backdrop-blur-xl"
           />
           
           <motion.div
             initial={{ scale: 0.9, y: 40, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.9, y: 40, opacity: 0 }}
-            className="relative w-full max-w-2xl bg-[#0F172A]/40 glass border-white/10 rounded-[3.5rem] p-12 overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)]"
+            className="relative w-full max-w-2xl bg-card/40 glass border-border/10 rounded-[3.5rem] p-12 overflow-hidden shadow-2xl"
           >
             {/* Geometric Background Decoration */}
             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
-              <Sparkles className="w-64 h-64 text-blue-500" />
+              <Sparkles className="w-64 h-64 text-primary" />
             </div>
 
             <div className="relative z-10">
               <div className="flex justify-between items-center mb-12">
                 <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${mode === 'scenario' ? 'bg-blue-600/20 text-blue-400' : 'bg-emerald-600/20 text-emerald-400'}`}>
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${mode === 'scenario' ? 'bg-primary/20 text-primary' : 'bg-accent/20 text-accent'}`}>
                     <Sparkles className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="text-[10px] font-black text-white/40 uppercase tracking-[0.4em] mb-1">Onboarding</h4>
-                    <h3 className="text-xl font-bold text-white italic tracking-tight">{levelName}</h3>
+                    <h4 className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.4em] mb-1">Onboarding</h4>
+                    <h3 className="text-xl font-bold text-foreground italic tracking-tight">{levelName}</h3>
                   </div>
                 </div>
                 
@@ -115,8 +115,8 @@ const InstructionModal = ({ isOpen, onClose, lang, mode, level, levelName }: Ins
                       onClick={() => setActiveTab(tab)}
                       className={`h-1.5 rounded-full transition-all duration-500 ${
                         activeTab === tab 
-                          ? `w-8 ${mode === 'scenario' ? 'bg-blue-500' : 'bg-emerald-500'}` 
-                          : 'w-4 bg-white/10 hover:bg-white/20'
+                          ? `w-8 ${mode === 'scenario' ? 'bg-primary' : 'bg-accent'}` 
+                          : 'w-4 bg-muted hover:bg-muted-foreground/20'
                       }`}
                     />
                   ))}
@@ -133,8 +133,8 @@ const InstructionModal = ({ isOpen, onClose, lang, mode, level, levelName }: Ins
                     transition={{ duration: 0.4, ease: "circOut" }}
                     className="flex flex-col items-center"
                   >
-                    <div className="w-32 h-32 rounded-[2.5rem] bg-white/5 border border-white/10 flex items-center justify-center mb-8 shadow-2xl relative group">
-                      <div className={`absolute inset-0 blur-2xl opacity-20 group-hover:opacity-40 transition-opacity ${mode === 'scenario' ? 'bg-blue-500' : 'bg-emerald-500'}`} />
+                    <div className="w-32 h-32 rounded-[2.5rem] bg-card border border-border flex items-center justify-center mb-8 shadow-2xl relative group">
+                      <div className={`absolute inset-0 blur-2xl opacity-20 group-hover:opacity-40 transition-opacity ${mode === 'scenario' ? 'bg-primary' : 'bg-accent'}`} />
                       <motion.div
                         animate={{ y: [0, -5, 0] }}
                         transition={{ duration: 4, repeat: Infinity }}
@@ -144,11 +144,11 @@ const InstructionModal = ({ isOpen, onClose, lang, mode, level, levelName }: Ins
                       </motion.div>
                     </div>
 
-                    <h2 className={`text-4xl font-black italic uppercase tracking-tighter mb-6 ${mode === 'scenario' ? 'text-blue-400' : 'text-emerald-400'}`}>
+                    <h2 className={`text-4xl font-black italic uppercase tracking-tighter mb-6 ${mode === 'scenario' ? 'text-primary' : 'text-accent'}`}>
                       {currentContent.title}
                     </h2>
                     
-                    <p className="text-white/70 text-lg font-medium leading-[1.6] max-w-md mx-auto italic">
+                    <p className="text-muted-foreground text-lg font-medium leading-[1.6] max-w-md mx-auto italic">
                       "{currentContent.text}"
                     </p>
                   </motion.div>
@@ -159,7 +159,7 @@ const InstructionModal = ({ isOpen, onClose, lang, mode, level, levelName }: Ins
                 {activeTab !== 'instructions' ? (
                   <button
                     onClick={() => setActiveTab(tabs[tabs.indexOf(activeTab) + 1])}
-                    className="flex-1 py-5 rounded-3xl bg-white/5 border border-white/10 text-white font-black uppercase tracking-[0.3em] text-sm hover:bg-white/10 transition-all flex items-center justify-center gap-3"
+                    className="flex-1 py-5 rounded-3xl bg-muted border border-border text-foreground font-black uppercase tracking-[0.3em] text-sm hover:bg-muted/80 transition-all flex items-center justify-center gap-3"
                   >
                     Next Concept
                     <ChevronRight className="w-5 h-5" />
@@ -168,7 +168,7 @@ const InstructionModal = ({ isOpen, onClose, lang, mode, level, levelName }: Ins
                   <button
                     onClick={onClose}
                     className={`flex-1 py-6 rounded-3xl font-black uppercase tracking-[0.4em] text-sm shadow-2xl hover:scale-[1.02] transition-all flex items-center justify-center gap-4 ${
-                      mode === 'scenario' ? 'bg-blue-600 text-white shadow-blue-900/40' : 'bg-emerald-600 text-white shadow-emerald-900/40'
+                      mode === 'scenario' ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'
                     }`}
                   >
                     Begin Operations

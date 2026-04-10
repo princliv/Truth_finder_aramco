@@ -131,13 +131,13 @@ const ScenarioMode = ({ lang, onComplete, onTriggerAI, onLevelChange }: Scenario
   };
 
   const getTypeColor = (type: ResponseType, isSelected: boolean) => {
-    if (!isSelected) return 'bg-white/5 backdrop-blur-sm text-white/80 border-white/5 hover:border-secondary hover:shadow-lg transition-all';
+    if (!isSelected) return 'bg-muted/50 backdrop-blur-sm text-foreground/80 border-border hover:border-secondary hover:shadow-lg transition-all';
     
     switch (type) {
       case 'reflective': return 'gradient-primary text-primary-foreground border-transparent shadow-[0_0_20px_rgba(0,163,224,0.3)] scale-[1.02]';
-      case 'defensive': return 'bg-yellow-500/20 text-yellow-100 border-yellow-500/50 shadow-[0_0_20px_rgba(234,179,8,0.2)] scale-[1.02]';
-      case 'reactive': return 'bg-orange-500/20 text-orange-100 border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0.2)] scale-[1.02]';
-      case 'veryDangerous': return 'bg-red-500/20 text-red-100 border-red-500/50 shadow-[0_0_20px_rgba(239,68,68,0.2)] scale-[1.02]';
+      case 'defensive': return 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-100 border-yellow-500/50 shadow-[0_0_20px_rgba(234,179,8,0.2)] scale-[1.02]';
+      case 'reactive': return 'bg-orange-500/20 text-orange-600 dark:text-orange-100 border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0.2)] scale-[1.02]';
+      case 'veryDangerous': return 'bg-red-500/20 text-red-600 dark:text-red-100 border-red-500/50 shadow-[0_0_20px_rgba(239,68,68,0.2)] scale-[1.02]';
       default: return '';
     }
   };
@@ -151,8 +151,8 @@ const ScenarioMode = ({ lang, onComplete, onTriggerAI, onLevelChange }: Scenario
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in relative z-10">
       <div className="flex justify-between items-center mb-8">
-        <h4 className="text-xs font-black text-white/40 uppercase tracking-[0.3em]">{t(lang, 'scenarioMode')}</h4>
-        <div className="flex items-center gap-3 px-4 py-2 rounded-2xl glass border-white/10 shadow-xl">
+        <h4 className="text-xs font-black text-muted-foreground uppercase tracking-[0.3em]">{t(lang, 'scenarioMode')}</h4>
+        <div className="flex items-center gap-3 px-4 py-2 rounded-2xl glass border-border shadow-xl">
           <Zap className="w-5 h-5 text-secondary animate-pulse" />
           <span className="text-sm font-black bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">{xp} XP</span>
         </div>
@@ -162,7 +162,7 @@ const ScenarioMode = ({ lang, onComplete, onTriggerAI, onLevelChange }: Scenario
 
       <div className="mt-12 group relative">
         <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-[2.5rem] blur opacity-50" />
-        <div className="relative p-10 rounded-[2.5rem] glass border-white/10 shadow-2xl overflow-hidden animate-slide-up">
+        <div className="relative p-10 rounded-[2.5rem] glass border-border shadow-2xl overflow-hidden animate-slide-up">
           <div className="mb-10">
             <div className="flex items-center gap-3 mb-6">
               <span className="px-5 py-2 rounded-xl text-xs font-black uppercase tracking-widest gradient-primary text-primary-foreground shadow-xl">
@@ -170,7 +170,7 @@ const ScenarioMode = ({ lang, onComplete, onTriggerAI, onLevelChange }: Scenario
               </span>
               <div className="h-px flex-1 bg-gradient-to-r from-primary/30 to-transparent" />
             </div>
-            <h3 className="text-2xl md:text-3xl font-black text-white italic tracking-tighter leading-tight">
+            <h3 className="text-2xl md:text-3xl font-black text-foreground italic tracking-tighter leading-tight">
               {t(lang, scenario.descKey as any)}
             </h3>
           </div>
@@ -184,7 +184,7 @@ const ScenarioMode = ({ lang, onComplete, onTriggerAI, onLevelChange }: Scenario
                 className={`w-full p-6 rounded-3xl text-start transition-all duration-500 border flex items-center gap-6 group/opt ${getTypeColor(type, selected === type)}`}
               >
                 <div className={`shrink-0 w-10 h-10 rounded-2xl flex items-center justify-center transition-all ${
-                  selected === type ? 'bg-white/20' : 'bg-white/5 group-hover/opt:bg-secondary/20'
+                  selected === type ? 'bg-white/20' : 'bg-muted group-hover/opt:bg-secondary/20'
                 }`}>
                   {selected === type ? (
                     type === 'reflective' ? <CheckCircle2 className="w-6 h-6" /> : 
@@ -192,11 +192,11 @@ const ScenarioMode = ({ lang, onComplete, onTriggerAI, onLevelChange }: Scenario
                     type === 'reactive' ? <XCircle className="w-6 h-6" /> :
                     <AlertTriangle className="w-6 h-6" />
                   ) : (
-                    <span className="w-2.5 h-2.5 rounded-full bg-white/20 group-hover/opt:bg-secondary group-hover/opt:scale-150 transition-all shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-muted-foreground/20 group-hover/opt:bg-secondary group-hover/opt:scale-150 transition-all shadow-sm" />
                   )}
                 </div>
                 <div className="flex-1">
-                  <span className={`text-[10px] font-black uppercase tracking-[0.3em] block mb-2 ${selected === type ? 'text-white/70' : 'text-white/30'}`}>
+                  <span className={`text-[10px] font-black uppercase tracking-[0.3em] block mb-2 ${selected === type ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
                     {getTypeLabel(type)}
                   </span>
                   <span className="text-lg font-bold leading-tight">{t(lang, key as any)}</span>

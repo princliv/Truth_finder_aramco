@@ -9,9 +9,9 @@ const LanguageToggle = ({ lang, onToggle }: LanguageToggleProps) => {
   return (
     <button
       onClick={onToggle}
-      className="flex items-center gap-2 px-4 py-2 rounded-full bg-card card-shadow border border-border hover:border-secondary transition-all duration-300"
+      className="flex items-center gap-2 px-4 py-2 rounded-full bg-card card-shadow border border-border hover:border-primary transition-all duration-300"
     >
-      <span className={`text-sm font-medium transition-colors ${lang === 'en' ? 'text-secondary' : 'text-muted-foreground'}`}>
+      <span className={`text-sm font-medium transition-colors ${lang === 'en' ? 'text-primary' : 'text-muted-foreground'}`}>
         EN
       </span>
       <div className="relative w-10 h-5 rounded-full gradient-primary">
@@ -21,7 +21,7 @@ const LanguageToggle = ({ lang, onToggle }: LanguageToggleProps) => {
           }`}
         />
       </div>
-      <span className={`text-sm font-medium transition-colors ${lang === 'ar' ? 'text-secondary' : 'text-muted-foreground'}`}>
+      <span className={`text-sm font-medium transition-colors ${lang === 'ar' ? 'text-primary' : 'text-muted-foreground'}`}>
         عربي
       </span>
     </button>
